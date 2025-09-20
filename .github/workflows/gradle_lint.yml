@@ -41,3 +41,18 @@ jobs:
 
             - name: Lint with Gradle
               run: ./gradlew spotlessCheck
+
+    commitLint:
+
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+            - name: Commit Lint
+              uses: wagoid/commitlint-github-action@v4
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
