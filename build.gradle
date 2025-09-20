@@ -2,6 +2,8 @@ plugins {
 	id 'fabric-loom' version '1.11-SNAPSHOT'
 	id 'maven-publish'
 	id 'com.diffplug.spotless' version '7.2.1'
+	id 'com.star-zero.gradle.githook' version '1.2.1'
+	id 'ru.netris.commitlint' version '1.4.3'
 }
 
 spotless {
@@ -29,6 +31,22 @@ spotless {
 		// through git history (see "license" section below)
 		licenseHeader '/* (C)$YEAR */'
 	}
+}
+
+githook {
+	createHooksDirIfNotExist = true
+	hooks {
+		"commit-msg" {
+			task = "commitlint -Dmsgfile=\$1"
+		}
+		"pre-commit" {
+			task = "spotlessCheck"
+		}
+	}
+}
+
+commitlint {
+	enforceRefs = false
 }
 
 version = project.mod_version
