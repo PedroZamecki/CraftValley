@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "craft_valley",
+  "version": "${version}",
+  "name": "Craft Valley",
+  "description": "A Stardew Valley inspired server-side Minecraft Mod!",
+  "authors": ["Zamecki"],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/craft_valley/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "org.zamecki.craft_valley.CraftValley"
+    ]
+  },
+  "mixins": [
+    "craft_valley.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
