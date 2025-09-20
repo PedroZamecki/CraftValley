@@ -17,6 +17,17 @@ jobs:
             - uses: actions/checkout@v4
               with:
                   fetch-depth: 0
+            - name: Cache Gradle packages
+              uses: actions/cache@v4
+              with:
+                  path: |
+                    ~/.gradle/caches
+                    ~/.gradle/wrapper
+                    .gradle
+                  # Use the wrapper properties and gradle files to version the cache key
+                  key: ${{ runner.os }}-gradle-${{ hashFiles('**/gradle-wrapper.properties','**/*.gradle*','**/*.gradle.kts') }}
+                  restore-keys: |
+                    ${{ runner.os }}-gradle-
             - name: Set up JDK 21
               uses: actions/setup-java@v4
               with:
